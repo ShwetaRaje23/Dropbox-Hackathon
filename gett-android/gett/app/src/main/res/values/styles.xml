@@ -3,6 +3,20 @@
     <style name="AppTheme" parent="android:Theme.Material.Light">
         <item name="android:colorPrimary">#fff</item>
         <item name="android:colorPrimaryDark">#000</item>
+        <item name="android:textColor">#fff</item>
         <item name="android:windowBackground">@drawable/background</item>
+        <item name="android:buttonStyle">@style/GettButton</item>
+    </style>
+
+    <style name="GettButton" parent="@android:style/Widget.Button">
+        <item name="android:textColor">#fff</item>
+        <item name="android:background">@drawable/button_background</item>
+        <item name="android:letterSpacing">0.1</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:paddingTop">20dp</item>
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
     </style>
 </resources>
