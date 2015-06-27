@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+
+    <TextView
+        android:id="@+id/text_view1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Heidi is going to TeaTalk!"/>
+
+    <TextView
+        android:id="@+id/text_view2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="What do you want?"
+        android:layout_below="@id/text_view1"
+        android:layout_alignParentLeft="true"/>
+
+    <EditText
+        android:id="@+id/edit_text1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@id/text_view2"
+        android:hint="Yum yums..."/>
+
+    <TextView
+        android:id="@+id/text_view3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_text1"
+        android:text="Total cost: "/>
+
+    <EditText
+        android:id="@+id/edit_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_view3"
+        android:hint="$0.00"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_text2"
+        android:text="Gett it!"/>
+
+</RelativeLayout>
