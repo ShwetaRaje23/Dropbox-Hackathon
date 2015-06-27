@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
         /**
          * This is used to say where to go when the push is clicked. Go to the Receiver part of the activity
          */
-//        PushService.setDefaultPushCallback(this, ReceiverActivity.class);
+        PushService.setDefaultPushCallback(this, ReceiverActivity.class);
 
         /**
          * This saves the instance as an installation on Parse

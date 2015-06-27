@@ -8,37 +8,51 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
+        android:padding="20dp"
+        android:layout_gravity="center"
         android:orientation="vertical"
         android:background="@drawable/rounded_white_box">
 
         <TextView
             android:id="@+id/title"
+            android:textColor="#fa511e"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_marginTop="12dp"
+            android:layout_gravity="center_horizontal"
+            android:text="MY SPOT"
+            android:textSize="18sp"/>
 
         <TextView
             android:id="@+id/subtitle"
+            android:textColor="#fa511e"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:text="BOBA GUYS\nAT 6:27 PM"
+            android:textSize="16sp"/>
 
         <TextView
+            android:textColor="#fa511e"
             android:id="@+id/my_request_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:text="My request:"/>
 
         <EditText
             android:id="@+id/request_edit_text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="120dp"
+            android:layout_marginBottom="40dp"
             android:layout_margin="5dp"/>
 
         <Button
             android:id="@+id/save_button"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:text="Save"
             android:onClick="onSaveButtonClick"/>
 
@@ -46,6 +60,8 @@
             android:id="@+id/cancel_button"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center_horizontal"
             android:text="Cancel"
             android:onClick="onCancelButtonClick"/>
 

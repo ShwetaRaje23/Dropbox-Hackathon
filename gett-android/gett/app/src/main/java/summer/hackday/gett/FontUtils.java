@@ -16,4 +16,9 @@ public class FontUtils {
         Typeface face = Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Bold.ttf");
         button.setTypeface(face);
     }
+
+    public static void makeThisTextBold(Context context, TextView textView) {
+        Typeface face = Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Bold.ttf");
+        textView.setTypeface(face);
+    }
 }

@@ -1,8 +1,12 @@
 package summer.hackday.gett;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -22,6 +26,10 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.parse.ParsePush;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class NewRunActivity extends Activity
         implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
@@ -57,7 +65,7 @@ public class NewRunActivity extends Activity
                 // Construct an intent for the place picker
                 try {
                     PlacePicker.IntentBuilder intentBuilder = new PlacePicker.IntentBuilder();
-                    Intent intent = intentBuilder.build(context);
+                    Intent intent = intentBuilder.build(getApplicationContext());
                     // Start the intent by requesting a result,
                     // identified by a request code.
                     startActivityForResult(intent, REQUEST_PLACE_PICKER);
@@ -83,12 +91,27 @@ public class NewRunActivity extends Activity
                  * SEND!
                  */
 
-                ParsePush push = new ParsePush();
-                push.setChannel("");
-                push.setMessage("Going to Boba Talk at 6:30 ");
-                push.sendInBackground();
+//                ParsePush push = new ParsePush();
+//                push.setChannel("");
+//                push.setMessage("Going to Boba Talk at 6:30 ");
+//                push.sendInBackground();
+
+                Intent intent = new Intent(context, ReceiverActivity.class);
+                PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent,
+                        PendingIntent.FLAG_UPDATE_CURRENT);
 
 
+                String time = new SimpleDateFormat("hh:mm").format(new Date());
+                Notification notification = new Notification.Builder(context)
+                        .setSmallIcon(R.drawable.push_notification_icon_24x24)
+                        .setContentTitle("Spot available.")
+                        .setContentText("Heidi says: Boba Guys at " + time)
+                        .setContentIntent(pendingIntent)
+                        .setColor(Color.argb(0, 250, 81, 30))
+                        .build();
+                NotificationManager notificationManager = (NotificationManager) context
+                        .getSystemService(Context.NOTIFICATION_SERVICE);
+                notificationManager.notify(1, notification);
             }
         };
 
@@ -204,6 +227,7 @@ public class NewRunActivity extends Activity
 
             final CharSequence name = place.getName();
             final CharSequence address = place.getAddress();
+            Log.v("Gett", "Picked place: " + name + " : " + address);
             String attributions = PlacePicker.getAttributions(data);
             if (attributions == null) {
                 attributions = "";
@@ -215,6 +239,8 @@ public class NewRunActivity extends Activity
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
+
+        Toast.makeText(this, "Picked Boba Guys!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
