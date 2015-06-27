@@ -6,6 +6,16 @@
         <item name="android:textColor">#fff</item>
         <item name="android:windowBackground">@drawable/background</item>
         <item name="android:buttonStyle">@style/GettButton</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="AppThemeDarkActionBar" parent="android:Theme.Material">
+        <item name="android:colorPrimary">#4e4d48</item>
+        <item name="android:colorPrimaryDark">#000</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:windowBackground">@drawable/background</item>
+        <item name="android:buttonStyle">@style/GettButton</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="GettButton" parent="@android:style/Widget.Button">

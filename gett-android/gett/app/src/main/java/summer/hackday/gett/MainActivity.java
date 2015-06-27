@@ -2,19 +2,21 @@ package summer.hackday.gett;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
@@ -25,13 +27,11 @@ import com.parse.ParseInstallation;
 import com.parse.ParsePush;
 import com.parse.SaveCallback;
 
-import com.facebook.FacebookSdk;
-import com.parse.Parse;
-import com.parse.ParseInstallation;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 
@@ -42,6 +42,9 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Parse.initialize(getApplicationContext(), "RF0OW20w6uLc8K6J1jpg4IZ2AEr5SlQde1ph4WRl", "PvAgMhXiE9cTXt8rxZns5rdJxcMuy0fRAsZRW4SV");
+        ParseInstallation.getCurrentInstallation().saveInBackground();
 
         /** SR: This is where you can add a string to segment the people who you want to send the push notification to.
          *
@@ -56,11 +59,6 @@ public class MainActivity extends Activity {
                 }
             }
         });
-
-
-
-        Parse.initialize(this, "RF0OW20w6uLc8K6J1jpg4IZ2AEr5SlQde1ph4WRl", "PvAgMhXiE9cTXt8rxZns5rdJxcMuy0fRAsZRW4SV");
-        ParseInstallation.getCurrentInstallation().saveInBackground();
 
         FacebookSdk.sdkInitialize(getApplicationContext());
 
@@ -104,7 +102,7 @@ public class MainActivity extends Activity {
                                         Intent intent = new Intent(mainActivity, NewRunActivity.class);
                                         mainActivity.startActivity(intent);
                                     } catch (JSONException e) {
-                                        e.printStackTrace();
+                                        Log.e("Gett", "Exception: " + e.getMessage());
                                     }
                                 }
                             }

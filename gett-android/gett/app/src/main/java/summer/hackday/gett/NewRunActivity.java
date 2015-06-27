@@ -86,8 +86,8 @@ public class NewRunActivity extends Activity {
                         break;
                     default:
                         desc.setText("3rd desc");
-                        button.setText("Ya a button");
-                        pagination.setImageResource(R.drawable.pagination_2);
+                        button.setText("Send");
+                        pagination.setImageResource(R.drawable.pagination_3);
                         break;
                 }
             }
