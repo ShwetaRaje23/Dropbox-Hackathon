@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Html;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -20,6 +19,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.parse.ParsePush;
 
 public class NewRunActivity extends Activity {
     private GoogleApiClient mGoogleApiClient;
@@ -34,6 +34,7 @@ public class NewRunActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         final Context context = this;
+        final String place;
 
         mGoogleApiClient = new GoogleApiClient
                 .Builder(this)
@@ -71,7 +72,17 @@ public class NewRunActivity extends Activity {
         onSendClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // SEND!
+
+                /** Add this to the send button to send all the details to specific friends
+                 * SEND!
+                 */
+
+                ParsePush push = new ParsePush();
+                push.setChannel("");
+                push.setMessage("Going to Boba Talk at 6:30 ");
+                push.sendInBackground();
+
+
             }
         };
 

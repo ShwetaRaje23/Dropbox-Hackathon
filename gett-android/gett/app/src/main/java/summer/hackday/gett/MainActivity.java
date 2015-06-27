@@ -72,7 +72,7 @@ public class MainActivity extends Activity {
         /** SR: This is where you can add a string to segment the people who you want to send the push notification to.
          * This one is to subscribe yourself to a channel
          */
-        ParsePush.subscribeInBackground("Receiver", new SaveCallback() {
+        ParsePush.subscribeInBackground("", new SaveCallback() {
             @Override
             public void done(ParseException e) {
                 if (e == null) {
@@ -82,19 +82,6 @@ public class MainActivity extends Activity {
                 }
             }
         });
-
-        /** Add this to the send button to send all the details to specific friends
-         *
-         */
-
-        ParsePush push = new ParsePush();
-        push.setChannel("Receiver");
-        push.setMessage("Hey!");
-        push.sendInBackground();
-
-        /**
-         *
-         */
 
         FacebookSdk.sdkInitialize(getApplicationContext());
 
