@@ -4,8 +4,8 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/new_run_button"
-        android:layout_width="wrap_content"
+        android:id="@+id/login_button"
+        android:layout_width="185dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="20dp"
