@@ -13,7 +13,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.Places;
+import com.google.android.gms.location.places.ui.PlacePicker;
+import com.parse.ParsePush;
+
 public class NewRunActivity extends Activity {
+    private GoogleApiClient mGoogleApiClient;
+    public static int REQUEST_PLACE_PICKER = 1;
 
     private View.OnClickListener onPickAPlaceClickListener;
     private View.OnClickListener onSelectFriendsClickListener;
@@ -26,11 +36,33 @@ public class NewRunActivity extends Activity {
         getActionBar().setElevation(0);
 
         final Context context = this;
+        final String place;
+
+        mGoogleApiClient = new GoogleApiClient
+                .Builder(this)
+                .addApi(Places.GEO_DATA_API)
+                .addApi(Places.PLACE_DETECTION_API)
+                        // this may be really really wrong
+                .addConnectionCallbacks((GoogleApiClient.ConnectionCallbacks)this)
+                .addOnConnectionFailedListener((GoogleApiClient.OnConnectionFailedListener)this)
+                .build();
 
         onPickAPlaceClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Pick a place!
+                // Construct an intent for the place picker
+                try {
+                    PlacePicker.IntentBuilder intentBuilder = new PlacePicker.IntentBuilder();
+                    Intent intent = intentBuilder.build(context);
+                    // Start the intent by requesting a result,
+                    // identified by a request code.
+                    startActivityForResult(intent, REQUEST_PLACE_PICKER);
+
+                } catch (GooglePlayServicesRepairableException e) {
+                    e.printStackTrace();
+                } catch (GooglePlayServicesNotAvailableException e) {
+                    e.printStackTrace();
+                }        // Construct an intent for the place picker
             }
         };
         onSelectFriendsClickListener = new View.OnClickListener() {
@@ -42,10 +74,19 @@ public class NewRunActivity extends Activity {
         onSendClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // SEND!
+
+                /** Add this to the send button to send all the details to specific friends
+                 * SEND!
+                 */
+
+                ParsePush push = new ParsePush();
+                push.setChannel("");
+                push.setMessage("Going to Boba Talk at 6:30 ");
+                push.sendInBackground();
+
+
             }
         };
-
 
         setContentView(R.layout.activity_new_run);
 
@@ -133,4 +174,40 @@ public class NewRunActivity extends Activity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mGoogleApiClient.connect();
+    }
+
+    @Override
+    protected void onStop() {
+        mGoogleApiClient.disconnect();
+        super.onStop();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode,
+                                    int resultCode, Intent data) {
+
+        if (requestCode == REQUEST_PLACE_PICKER
+                && resultCode == Activity.RESULT_OK) {
+
+            // The user has selected a place. Extract the name and address.
+            final Place place = PlacePicker.getPlace(data, this);
+
+            final CharSequence name = place.getName();
+            final CharSequence address = place.getAddress();
+            String attributions = PlacePicker.getAttributions(data);
+            if (attributions == null) {
+                attributions = "";
+            }
+
+            /*mViewName.setText(name);
+            mViewAddress.setText(address);
+            mViewAttributions.setText(Html.fromHtml(attributions));*/
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
 }
