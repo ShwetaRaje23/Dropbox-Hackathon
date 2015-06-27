@@ -23,6 +23,8 @@ public class NewRunActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        getActionBar().setElevation(0);
+
         final Context context = this;
 
         onPickAPlaceClickListener = new View.OnClickListener() {
