@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import com.parse.Parse;
+import com.parse.ParseInstallation;
 
 import com.facebook.FacebookSdk;
 
@@ -19,7 +21,15 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Parse.initialize(this, "RF0OW20w6uLc8K6J1jpg4IZ2AEr5SlQde1ph4WRl", "PvAgMhXiE9cTXt8rxZns5rdJxcMuy0fRAsZRW4SV");
+        ParseInstallation.getCurrentInstallation().saveInBackground();
         FacebookSdk.sdkInitialize(this);
+
+        setView();
+    }
+
+    public void setView() {
         setContentView(R.layout.activity_main);
 
         FrameLayout viewPagerContainer = (FrameLayout) findViewById(R.id.cool_view_pager_container);
@@ -50,7 +60,6 @@ public class MainActivity extends Activity {
             }
         });
         viewPagerContainer.addView(viewPager);
-
     }
 
     @Override
