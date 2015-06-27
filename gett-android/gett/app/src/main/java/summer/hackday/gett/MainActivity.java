@@ -40,6 +40,8 @@ import java.util.Arrays;
 
 public class MainActivity extends Activity {
 
+    private CallbackManager callbackManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +72,7 @@ public class MainActivity extends Activity {
 //        installation.put("username", ParseUser.getCurrentUser().getUsername());
 //        installation.saveInBackground();
 
+
         /** SR: This is where you can add a string to segment the people who you want to send the push notification to.
          * This one is to subscribe yourself to a channel
          */
@@ -99,7 +102,7 @@ public class MainActivity extends Activity {
 
 
 
-        FacebookSdk.sdkInitialize(this);
+        FacebookSdk.sdkInitialize(getApplicationContext());
 
         setView();
     }
@@ -117,7 +120,8 @@ public class MainActivity extends Activity {
     }
 
     public void onLoginButtonClick(View view) {
-        CallbackManager callbackManager = CallbackManager.Factory.create();
+        final Activity mainActivity = this;
+        callbackManager = CallbackManager.Factory.create();
 
         LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "user_friends"));
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -127,11 +131,18 @@ public class MainActivity extends Activity {
                         loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
                             @Override
                             public void onCompleted(JSONObject json, GraphResponse response) {
+                                Log.d("gett", "1");
                                 if (response.getError() != null) {
-                                    System.out.println("Error logging in.");
+                                    Log.e("Gett", "Error logging in: " + response.getError().toString());
                                 } else {
                                     try {
+                                        Log.d("gett", "2");
                                         String user_id = json.getString("id");
+                                        Log.d("Gett", "Login successful! User id: " + user_id);
+
+                                        // Start new food run activity
+                                        Intent intent = new Intent(mainActivity, NewRunActivity.class);
+                                        mainActivity.startActivity(intent);
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
@@ -143,14 +154,20 @@ public class MainActivity extends Activity {
 
             @Override
             public void onCancel() {
-                System.out.println("Cancelled!");
+                Log.d("Gett", "Cancelled!");
             }
 
             @Override
             public void onError(FacebookException e) {
-                System.out.println("Error: " + e.toString());
+                Log.d("Gett", "Error! " + e.toString());
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
 }
