@@ -24,6 +24,9 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+        <meta-data
+            android:name="com.google.android.geo.AIzaSyCcHA9ZhqOoE9AEEv2P7BrbUgVgAypULSA"
+            android:value="AIzaSyCcHA9ZhqOoE9AEEv2P7BrbUgVgAypULSA"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
