@@ -84,7 +84,7 @@
         <!-- replace @drawable/push_icon with your push icon identifier. Done! -->
         <meta-data
             android:name="com.parse.push.notification_icon"
-            android:resource="@drawable/push_notification_icon_48x48" />
+            android:resource="@drawable/push_notification_icon_24x24" />
         <meta-data
             android:name="com.parse.push.gcm_sender_id"
             android:value="id:967872336693,412965308419,177450649269" />

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -50,6 +51,7 @@ public class NewRunActivity extends Activity {
         onPickAPlaceClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.v("Gett", "onPickAPlaceClick");
                 // Construct an intent for the place picker
                 try {
                     PlacePicker.IntentBuilder intentBuilder = new PlacePicker.IntentBuilder();
@@ -74,7 +76,7 @@ public class NewRunActivity extends Activity {
         onSendClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Log.v("Gett", "onSendClick");
                 /** Add this to the send button to send all the details to specific friends
                  * SEND!
                  */
@@ -190,6 +192,7 @@ public class NewRunActivity extends Activity {
     protected void onActivityResult(int requestCode,
                                     int resultCode, Intent data) {
 
+        Log.v("Gett", "onActivityResult");
         if (requestCode == REQUEST_PLACE_PICKER
                 && resultCode == Activity.RESULT_OK) {
 
