@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.view.View;
+import com.parse.Parse;
+import com.parse.ParseInstallation;
 
 
 public class MainActivity extends Activity {
@@ -15,7 +17,13 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Parse.initialize(this, "RF0OW20w6uLc8K6J1jpg4IZ2AEr5SlQde1ph4WRl", "PvAgMhXiE9cTXt8rxZns5rdJxcMuy0fRAsZRW4SV");
+        ParseInstallation.getCurrentInstallation().saveInBackground();
+
+
         setContentView(R.layout.activity_main);
+
     }
 
     public void onNewRunButtonClick(View view) {
