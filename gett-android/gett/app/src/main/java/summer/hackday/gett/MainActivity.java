@@ -23,6 +23,9 @@ import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParsePush;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+import com.parse.PushService;
 import com.parse.SaveCallback;
 
 import com.facebook.FacebookSdk;
@@ -46,13 +49,31 @@ public class MainActivity extends Activity {
          * 1. Register to a unique App ID and init Parse
          * 2. Register for a Push notification service
           */
+
+        /**
+         * This is used to initialize the push from my API key and Client Id for Parse
+         */
         Parse.initialize(this, "RF0OW20w6uLc8K6J1jpg4IZ2AEr5SlQde1ph4WRl", "PvAgMhXiE9cTXt8rxZns5rdJxcMuy0fRAsZRW4SV");
+
+        /**
+         * This is used to say where to go when the push is clicked. Go to the Receiver part of the activity
+         */
+        PushService.setDefaultPushCallback(this, ReceiverActivity.class);
+
+        /**
+         * This saves the instance as an installation on Parse
+         */
         ParseInstallation.getCurrentInstallation().saveInBackground();
 
+//
+//        ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+//        installation.put("username", ParseUser.getCurrentUser().getUsername());
+//        installation.saveInBackground();
+
         /** SR: This is where you can add a string to segment the people who you want to send the push notification to.
-         *
+         * This one is to subscribe yourself to a channel
          */
-        ParsePush.subscribeInBackground("", new SaveCallback() {
+        ParsePush.subscribeInBackground("Receiver", new SaveCallback() {
             @Override
             public void done(ParseException e) {
                 if (e == null) {
@@ -63,10 +84,20 @@ public class MainActivity extends Activity {
             }
         });
 
+        /** Add this to the send button to send all the details to specific friends
+         *
+         */
+
+        ParsePush push = new ParsePush();
+        push.setChannel("Receiver");
+        push.setMessage("Hey!");
+        push.sendInBackground();
+
+        /**
+         *
+         */
 
 
-        Parse.initialize(this, "RF0OW20w6uLc8K6J1jpg4IZ2AEr5SlQde1ph4WRl", "PvAgMhXiE9cTXt8rxZns5rdJxcMuy0fRAsZRW4SV");
-        ParseInstallation.getCurrentInstallation().saveInBackground();
 
         FacebookSdk.sdkInitialize(this);
 
