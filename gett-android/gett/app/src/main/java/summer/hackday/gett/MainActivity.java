@@ -7,6 +7,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 
 import com.facebook.FacebookSdk;
@@ -21,26 +23,15 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
     }
 
-    public void onNewRunButtonClick(View view) {
-        Intent intent = new Intent(this, NewRunActivity.class);
-        this.startActivity(intent);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
     }
 
-    public void onNotificationTestButton(View view) {
-
-        Notification.Builder builder = new Notification.Builder(this);
-        builder.setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("Gett it!")
-                .setContentText("Heidi is going to TeaTalk!");
-
-        Intent intent = new Intent(this, ItemRequestActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-        // TODO: lookup what pending intent flags do
-        builder.setContentIntent(pendingIntent);
-
-        // Show notification
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(1, builder.build());
+    public void onLoginButtonClick(View view) {
+        // Launch Facebook login stuff
     }
 
 }
