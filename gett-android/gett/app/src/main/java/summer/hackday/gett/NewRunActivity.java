@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -22,7 +23,8 @@ import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.parse.ParsePush;
 
-public class NewRunActivity extends Activity {
+public class NewRunActivity extends Activity
+        implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
     private GoogleApiClient mGoogleApiClient;
     public static int REQUEST_PLACE_PICKER = 1;
 
@@ -98,6 +100,7 @@ public class NewRunActivity extends Activity {
         final ImageView pagination = (ImageView) findViewById(R.id.cool_pagination);
         FontUtils.makeThisTextBetter(this, desc);
         FontUtils.makeThisTextBold(this, button);
+        button.setOnClickListener(onPickAPlaceClickListener);
 
         viewPager.setAdapter(new PagerAdapter() {
             @Override
@@ -212,5 +215,20 @@ public class NewRunActivity extends Activity {
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    @Override
+         public void onConnectionSuspended(int n) {
+        Log.v("Gett", "onConnectionSuspended");
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult r) {
+        Log.v("Gett", "onConnectionFailed");
+    }
+
+    @Override
+    public void onConnected(Bundle b) {
+        Log.v("Gett", "onConnected");
     }
 }

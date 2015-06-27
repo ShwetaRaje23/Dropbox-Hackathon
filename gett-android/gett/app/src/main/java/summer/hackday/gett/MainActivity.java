@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
         /**
          * This is used to say where to go when the push is clicked. Go to the Receiver part of the activity
          */
-        PushService.setDefaultPushCallback(this, ReceiverActivity.class);
+//        PushService.setDefaultPushCallback(this, ReceiverActivity.class);
 
         /**
          * This saves the instance as an installation on Parse
@@ -72,16 +72,16 @@ public class MainActivity extends Activity {
         /** SR: This is where you can add a string to segment the people who you want to send the push notification to.
          * This one is to subscribe yourself to a channel
          */
-        ParsePush.subscribeInBackground("", new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                if (e == null) {
-                    Log.d("com.parse.push", "successfully subscribed to the broadcast channel.");
-                } else {
-                    Log.e("com.parse.push", "failed to subscribe for push", e);
-                }
-            }
-        });
+//        ParsePush.subscribeInBackground("", new SaveCallback() {
+//            @Override
+//            public void done(ParseException e) {
+//                if (e == null) {
+//                    Log.d("com.parse.push", "successfully subscribed to the broadcast channel.");
+//                } else {
+//                    Log.e("com.parse.push", "failed to subscribe for push", e);
+//                }
+//            }
+//        });
 
         FacebookSdk.sdkInitialize(getApplicationContext());
 
