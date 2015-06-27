@@ -1,31 +1,16 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center">
-
-    <TextView
-        android:id="@+id/hello_world"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello world!"/>
+    android:layout_height="match_parent">
 
     <Button
         android:id="@+id/new_run_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_below="@id/hello_world"
-        android:text="New run!"
-        android:onClick="onNewRunButtonClick"/>
-
-    <Button
-        android:id="@+id/test_notification_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_below="@id/new_run_button"
-        android:text="Test notification!"
-        android:onClick="onNotificationTestButton"/>
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
+        android:text="Login to Facebook"
+        android:onClick="onLoginButtonClick"/>
 
 </RelativeLayout>
