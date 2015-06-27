@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.ParsePush;
+
 public class NewRunActivity extends Activity {
 
     private View.OnClickListener onPickAPlaceClickListener;
@@ -24,6 +26,7 @@ public class NewRunActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         final Context context = this;
+        final String place;
 
         onPickAPlaceClickListener = new View.OnClickListener() {
             @Override
@@ -40,7 +43,17 @@ public class NewRunActivity extends Activity {
         onSendClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // SEND!
+
+                /** Add this to the send button to send all the details to specific friends
+                 * SEND!
+                 */
+
+                ParsePush push = new ParsePush();
+                push.setChannel("");
+                push.setMessage("Going to Boba Talk at 6:30 ");
+                push.sendInBackground();
+
+
             }
         };
 
