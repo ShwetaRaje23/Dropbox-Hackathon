@@ -1,23 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
+                android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/destination_edit_text"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="141dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="#4e4d48"/>
 
-    <Button
+    <android.support.v4.view.ViewPager
+        android:id="@+id/cool_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"/>
+
+    <TextView
+        android:id="@+id/cool_page_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_below="@id/destination_edit_text"
-        android:layout_alignLeft="@id/destination_edit_text"
-        android:layout_alignRight="@id/destination_edit_text"
-        android:text="Let's go!"
-        android:onClick="onLetsGoButtonClick"
-        />
+        android:layout_below="@id/cool_view_pager"
+        android:layout_marginTop="55dp"
+        android:layout_centerHorizontal="true"
+        android:text="What's on the menu?"/>
+
+    <Button
+        android:id="@+id/cool_button"
+        android:layout_width="185dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cool_page_description"
+        android:layout_marginTop="37dp"
+        android:layout_centerHorizontal="true"
+        android:text="Pick a place"/>
+
+    <ImageView
+        android:id="@+id/cool_pagination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cool_button"
+        android:layout_marginTop="82dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/pagination_1"/>
 
 </RelativeLayout>

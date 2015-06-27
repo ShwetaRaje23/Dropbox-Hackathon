@@ -14,19 +14,24 @@
       IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below
       to match your app's package name + ".permission.C2D_MESSAGE". Done !
     -->
-    <permission android:protectionLevel="signature"
-        android:name="summer.hackday.gett.permission.C2D_MESSAGE" />
+    <permission
+        android:name="summer.hackday.gett.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
     <uses-permission android:name="summer.hackday.gett.permission.C2D_MESSAGE" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/push_notification_icon_48x48"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
         <meta-data
             android:name="com.google.android.geo.AIzaSyCcHA9ZhqOoE9AEEv2P7BrbUgVgAypULSA"
             android:value="AIzaSyCcHA9ZhqOoE9AEEv2P7BrbUgVgAypULSA"/>
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
@@ -36,7 +41,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NewRunActivity"/>
+        <activity android:name=".NewRunActivity"
+            android:theme="@style/AppThemeDarkActionBar"/>
         <activity android:name=".ItemRequestActivity"/>
         <activity android:name="com.facebook.FacebookActivity"
             android:configChanges=
@@ -44,34 +50,49 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:label="@string/app_name" />
 
-    <!-- SR: Using parse as a service for push notification -->
+        <!-- SR: Using parse as a service for push notification -->
 
         <service android:name="com.parse.PushService" />
-        <receiver android:name="com.parse.ParseBroadcastReceiver">
+
+        <receiver android:name="com.parse.ParseBroadcastReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.parse.ParsePushBroadcastReceiver"
-            android:exported="false">
+        <receiver
+            android:name="com.parse.ParsePushBroadcastReceiver"
+            android:exported="false" >
             <intent-filter>
                 <action android:name="com.parse.push.intent.RECEIVE" />
                 <action android:name="com.parse.push.intent.DELETE" />
                 <action android:name="com.parse.push.intent.OPEN" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.parse.GcmBroadcastReceiver"
-            android:permission="com.google.android.c2dm.permission.SEND">
+        <receiver
+            android:name="com.parse.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
 
-         <!--  IMPORTANT: Change "com.parse.starter" to match your app's package name. Done ! -->
+                <!-- IMPORTANT: Change "com.parse.starter" to match your app's package name. Done ! -->
                 <category android:name="summer.hackday.gett" />
             </intent-filter>
         </receiver>
 
+        <!-- replace @drawable/push_icon with your push icon identifier. Done! -->
+        <meta-data
+            android:name="com.parse.push.notification_icon"
+            android:resource="@drawable/push_notification_icon_48x48" />
+        <meta-data
+            android:name="com.parse.push.gcm_sender_id"
+            android:value="id:967872336693,412965308419,177450649269" />
+;
+        <activity
+            android:name=".ReceiverActivity"
+            android:label="@string/title_activity_receiver" >
+        </activity>
     </application>
 
 </manifest>
