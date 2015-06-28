@@ -79,8 +79,11 @@ public class NewRunActivity extends Activity
         };
         onSelectFriendsClickListener = new View.OnClickListener() {
             @Override
+
+
             public void onClick(View view) {
-                Toast.makeText(context, "Selected all your friends!", Toast.LENGTH_SHORT).show();
+                findViewById(R.id.friend_image).setVisibility(View.VISIBLE);
+                Toast.makeText(context, "Selected Rebecca !", Toast.LENGTH_SHORT).show();
             }
         };
         onSendClickListener = new View.OnClickListener() {
