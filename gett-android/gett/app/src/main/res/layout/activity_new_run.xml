@@ -18,6 +18,16 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"/>
 
+    <ImageView
+        android:id="@+id/friend_image"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_alignTop="@id/cool_view_pager"
+        android:layout_alignBottom="@id/cool_view_pager"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/rebecca"
+        android:visibility="gone"/>
+
     <TextView
         android:id="@+id/cool_page_description"
         android:layout_width="wrap_content"

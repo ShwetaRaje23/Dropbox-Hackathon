@@ -79,8 +79,11 @@ public class NewRunActivity extends Activity
         };
         onSelectFriendsClickListener = new View.OnClickListener() {
             @Override
+
+
             public void onClick(View view) {
-                Toast.makeText(context, "Selected all your friends!", Toast.LENGTH_SHORT).show();
+                findViewById(R.id.friend_image).setVisibility(View.VISIBLE);
+                Toast.makeText(context, "Selected Rebecca !", Toast.LENGTH_SHORT).show();
             }
         };
         onSendClickListener = new View.OnClickListener() {
@@ -105,7 +108,7 @@ public class NewRunActivity extends Activity
                 Notification notification = new Notification.Builder(context)
                         .setSmallIcon(R.drawable.push_notification_icon_24x24)
                         .setContentTitle("Spot available.")
-                        .setContentText("Heidi says: Boba Guys at " + time)
+                        .setContentText("Heidi says: Boba Guys at " + time + "?")
                         .setContentIntent(pendingIntent)
                         .setColor(Color.argb(0, 250, 81, 30))
                         .build();
